@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/tils")
@@ -45,7 +46,8 @@ public class TilController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteTil(@PathVariable String id) {
+    public String deleteTil(@PathVariable UUID id) {
+        tilService.removeTil(id);
         return "Be gone " + id;
     }
 

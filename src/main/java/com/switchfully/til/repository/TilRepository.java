@@ -22,6 +22,10 @@ public class TilRepository {
         this.entityManager = entityManager;
     }
 
+    public boolean contains(UUID uuid){
+        return entityManager.find(Til.class, uuid) != null;
+    }
+
     public List<Til> getTils() {
 //        return database.values().stream()
 //                .flatMap(Collection::stream)
@@ -46,6 +50,7 @@ public class TilRepository {
 //                .findAny().orElseThrow(NoSuchTilException::new);
 //
 //        database.get(tilToDelete.getPerson()).remove(tilToDelete);
-        entityManager.remove(uuid);
+        Til til = entityManager.find(Til.class, uuid);
+        entityManager.remove(til);
     }
 }

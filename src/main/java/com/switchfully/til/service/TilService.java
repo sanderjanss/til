@@ -2,6 +2,7 @@ package com.switchfully.til.service;
 
 import com.switchfully.til.domain.Til;
 import com.switchfully.til.domain.TilRequest;
+import com.switchfully.til.exceptions.NoSuchTilException;
 import com.switchfully.til.mappers.TilMapper;
 import com.switchfully.til.repository.TilRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,10 @@ public class TilService {
         return tilRepository.addTil(tilMapper.tilRequestToTil(tilToAdd));
     }
 
-    public void removeTil(String id) {
-        tilRepository.deleteTil(UUID.fromString(id));
+    public void removeTil(UUID id) {
+        if(tilRepository.contains(id)){
+            tilRepository.deleteTil(id);
+        }
+        throw new NoSuchTilException("Not a valid exception!");
     }
 }
