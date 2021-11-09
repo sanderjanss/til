@@ -6,10 +6,12 @@ import com.switchfully.til.mappers.TilMapper;
 import com.switchfully.til.repository.TilRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class TilService {
     private final TilRepository tilRepository;
     private final TilMapper tilMapper;
