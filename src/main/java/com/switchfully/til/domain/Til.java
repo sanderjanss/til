@@ -17,17 +17,17 @@ public class Til {
     // Postman needs uuid
     @Id
     @Column(name = "uuid")
-    private final UUID uuid;
+    private UUID uuid;
     // UI needs ownerName
     // UI also needs temployee
     // Postman needs owner
     // In java, a Person is needed
     @Column(name = "person")
-    private final String person;
+    private String person;
     // UI needs til
     // Postman needs knowledgeOfTheDay
     @Column(name= "knowledge_of_the_day")
-    private final String knowledgeOfTheDay;
+    private String knowledgeOfTheDay;
 
     public Til(UUID uuid, String knowledgeOfTheDay, String person) {
         this.uuid = uuid;
