@@ -31,9 +31,11 @@ public class TilService {
     }
 
     public void removeTil(UUID id) {
-        if(tilRepository.contains(id)){
-            tilRepository.deleteTil(id);
+        Til til = tilRepository.findById(id);
+        if(til != null){
+            tilRepository.deleteTil(til);
+        } else {
+            throw new NoSuchTilException("Not a valid til");
         }
-        throw new NoSuchTilException("Not a valid exception!");
     }
 }

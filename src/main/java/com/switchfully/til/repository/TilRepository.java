@@ -16,14 +16,10 @@ import java.util.stream.Collectors;
 public class TilRepository {
 
     @PersistenceContext
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
-    public TilRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public boolean contains(UUID uuid){
-        return entityManager.find(Til.class, uuid) != null;
+    public Til findById(UUID uuid){
+        return entityManager.find(Til.class, uuid);
     }
 
     public List<Til> getTils() {
@@ -43,14 +39,14 @@ public class TilRepository {
         return newTil;
     }
 
-    public void deleteTil(UUID uuid) {
+    public void deleteTil(Til til) {
 //        Til tilToDelete = database.values().stream()
 //                .flatMap(Collection::stream)
 //                .filter(til -> til.getUuid().equals(uuid))
 //                .findAny().orElseThrow(NoSuchTilException::new);
 //
 //        database.get(tilToDelete.getPerson()).remove(tilToDelete);
-        Til til = entityManager.find(Til.class, uuid);
+//        Til til = entityManager.find(Til.class, uuid);
         entityManager.remove(til);
     }
 }
